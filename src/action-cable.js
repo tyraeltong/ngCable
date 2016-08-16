@@ -123,6 +123,7 @@
           return this.consumer.subscriptions.notify(identifier, 'received', message)
         } else {
           // ping message from server without identifier, don't need to do anything
+          return this.consumer.subscriptions.notify(Cable.PING_IDENTIFIER, 'pinged')
         }
 
       },
@@ -171,6 +172,10 @@
 
     ConnectionMonitor.prototype.connected = function () {
       this.reset()
+      return this.pingedAt = now()
+    }
+
+    ConnectionMonitor.prototype.pinged = function () {
       return this.pingedAt = now()
     }
 
