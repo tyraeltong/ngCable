@@ -119,7 +119,7 @@
       message: function (event) {
         var identifier, message, ref
         ref = JSON.parse(event.data), identifier = ref.identifier, message = ref.message
-        if (identifier) {
+        if (identifier && message) {
           return this.consumer.subscriptions.notify(identifier, 'received', message)
         } else {
           // ping message from server without identifier, don't need to do anything
